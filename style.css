@@ -1,0 +1,31 @@
+#headerTimer {
+color: blue;
+display: flex;
+justify-content: center;
+font-weight: bolder;
+font-size: 150px;
+}
+
+#tCounter {
+    display: flex;
+    justify-content: center;
+    font-size: 120px;
+}
+
+.Taggedfood {
+    display: flex;
+    justify-content: center;
+    
+}
+
+#Food {
+    display: flex;
+    justify-content: center;
+    font-size: xx-large;
+}
+
+#foodCount{
+    display: flex;
+    justify-content: center;
+    font-size: xx-large;
+}
