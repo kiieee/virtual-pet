@@ -38,7 +38,7 @@ function updateCounter() {
       }, 1000); 
     } else {
 
-      
+
       counter--;
       document.getElementById("tCounter").textContent = counter;
     }
