@@ -1,23 +1,26 @@
-class MythicalCreature {
+class Animal {
     constructor(name){
         this.name = name
-        this.health = 500
+        this.healthPoints = 500
         this.hunger = 400
+        this.actionPoints = 300
     }
     drinks(){
-        this.health += 10
+        this.healthPoints += 10
         return this
     }
     eats(){
-        this.health += 10
+        this.healthPoints += 10
         this.hunger += 20
-        console.log(`${this.name}'s health is ${this.health}`)
+        this.actionPoints += 15
+        console.log(`${this.name}'s health is ${this.healthPoints}`)
         return this
     }
     stats(){
         return console.table({
             name: this.name,
-            health: this.health
+            healthPoints: this.healthPoints,
+            actionPoints: this.actionPoints,
         })
     }
 }
@@ -29,14 +32,17 @@ class Dragon extends Animal{
         this.happy = happy
     }
     burnVillage() {
-        this.health += 20
+        this.healthPoints += 20
         this.hunger -=15
-        console.log(`${this.name} is happy`)
+        this.actionPoints -=20
+        console.log(`${this.name} is basking in the flames`)
         return this
     }
     giveGold() {
         console.log(`An offering of gold has been given, they are ${this.happy}`)
-        this.health += 10
+        this.healthPoints += 10
+        this.actionPoints += 5
+        return this
     }
 }
 
@@ -44,4 +50,48 @@ const draco = new Dragon("draco")
 draco.drinks().eats()
 draco.stats()
 
+class Manticore extends Animal{
+    constructor(name, mood){
+        super(name, mood)
+        this.mood = mood
+    }
+stingAttack(){
+    this.healthPoints += 20
+    this.hunger -= 10
+    this.actionPoints -= 15
+    console.log(`This ${this.name} is satisfied`)
+    return this
+}
+playYarn(){
+    console.log(`${this.name} is playing with a ball of yarn, they are ${this.mood}`)
+    this.healthPoints += 10
+    this.actionPoints += 5
+    return this
+}
+}
+const manny = new Manticore("manny")
+manny.drinks().eats().playYarn
+manny.stats()
+
+class Centaur extends Animal{
+    constructor(name, content){
+        super(name, content)
+        this.content = content
+    }
+shootArrow() {
+    this.healthPoints += 15
+    this.hunger -= 10
+    this.actionPoints -= 10
+    console.log(`This ${this.name} is out hunting`)
+    return this
+}
+kickHooves() {
+    this.healthPoints += 10
+    this.actionPoints += 5
+    console.log(`${this.name} is ${this.content}`)
+}
+}
+const charlie = new Centaur("charlie")
+charlie.drinks().eats().shootArrow()
+charlie.stats()
 
