@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.wrapper {
+    max-width: 1200px; 
+    margin: 0 auto;    
+    padding: 20px;     
+    background-color: #f0f0f0; 
+}
+
+.buttonbox {
+    display: flex;
+    flex-direction: row;
+    max-width: 1000px; 
+    margin: 0 auto;    
+    padding: 10px;
+    background-color: #f4f4f4; 
+    justify-content: space-between;
+    text-decoration: none;
+}
+
+.button {
+    display: flex;
+    max-width: 200px;
+    padding: 10px;
+    background-color: orange;
+    color: red;
+}
