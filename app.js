@@ -1,97 +1,191 @@
+//Animal class 4 variables HPoints, Hunger, APoints, Thirst.
+//5th variable in subclass differs for each creature.
+//All values set to 200 
+
 class Animal {
     constructor(name){
         this.name = name
-        this.healthPoints = 500
-        this.hunger = 400
-        this.actionPoints = 300
+        this.healthPoints = 200
+        this.hunger = 200
+        this.actionPoints = 200
+        this.thirsty = 200
     }
-    drinks(){
-        this.healthPoints += 10
-        return this
+    drink() {
+        this.healthPoints = (this.health + 15 >= 200) ? 200 : this.health + 15;
+        this.thirsty = (this.thirsty + 15 >= 200) ? 200 : this.thirsty + 15;
     }
     eats(){
-        this.healthPoints += 10
-        this.hunger += 20
-        this.actionPoints += 15
-        console.log(`${this.name}'s health is ${this.healthPoints}`)
-        return this
-    }
-    stats(){
-        return console.table({
-            name: this.name,
-            healthPoints: this.healthPoints,
-            actionPoints: this.actionPoints,
-        })
+        this.healthPoints = (this.health + 25 >= 200) ? 200 : this.health + 25;
+        this.thirsty -= 5;
+        this.hunger = (this.hunger + 20 >= 200) ? 200 : this.hunger + 20;
     }
 }
 
 class Dragon extends Animal{
-    constructor(name, happy){
-        super(name,happy) //super keyword runs the constructor from parent class to set up 
-                            //the properties for the new class
-        this.happy = happy
+    constructor(name){
+        super(name); 
+        this.happinessPoints = 200;
     }
     burnVillage() {
-        this.healthPoints += 20
-        this.hunger -=15
         this.actionPoints -=20
-        console.log(`${this.name} is basking in the flames`)
-        return this
-    }
-    giveGold() {
-        console.log(`An offering of gold has been given, they are ${this.happy}`)
-        this.healthPoints += 10
-        this.actionPoints += 5
-        return this
-    }
-}
+        this.happinessPoints = (this.happinessPoints + 25 >= 200) ? 200 : this.happinessPoints + 25;
+        this.hunger = (this.hunger + 10 >= 200) ? 200 : this.hunger + 10;
 
-const draco = new Dragon("draco")
-draco.drinks().eats()
-draco.stats()
+    giveGold() {
+        this.actionPoints = (this.actionPoints + 25 >= 200) ? 200 : this.actionPoints +35;
+        this.healthPoints = (this.healthPoints + 25 >= 200) ? 200 : this.healthPoints + 5;
+    }
+
+    action(activity) {
+        switch(activity) {
+            case 'Drink':
+                this.drink();
+                break;
+            case 'Eat':
+                this.eats();
+                break;
+            case 'Burn Village':
+                this.burnVillage();
+                break;
+            case 'Give Gold':
+                this.giveGold();
+                break;
+            default:
+                break;
+        }
+    }
+    isAlive() {
+        if (this.healthPoints <= 0) {
+            msg.textContent = `${this.name} was too unhealthy, and has died.`;
+        }
+
+        if (this.hunger <= 0) {
+            msg.textContent = `${this.name} didnt burn enough villages for food and has starved `;
+        }
+    
+        if (this.thirsty <= 0) {
+            msg.textContent = `${this.name} died from the lack of water`;
+        }
+    
+        if (this.happinessPoints <= 0) {
+            msg.textContent = `${this.name} died of misery`;
+        }
+
+        if (this.actionPoints <= 0) {
+            msg.textContent = `${this.name} became lazy and died`;
+        }
+    }
+    
+}
 
 class Manticore extends Animal{
-    constructor(name, mood){
-        super(name, mood)
-        this.mood = mood
+    constructor(name){
+        super(name);
+        this.savageryPoints = 200;
     }
 stingAttack(){
-    this.healthPoints += 20
-    this.hunger -= 10
-    this.actionPoints -= 15
-    console.log(`This ${this.name} is satisfied`)
-    return this
+    this.actionPoints -=20
+    this.savageryPoints = (this.savageryPoints + 25 >= 200) ? 200 : this.savageryPoints + 25;
+    this.hunger = (this.hunger + 10 >= 200) ? 200 : this.hunger + 10;
 }
 playYarn(){
-    console.log(`${this.name} is playing with a ball of yarn, they are ${this.mood}`)
-    this.healthPoints += 10
-    this.actionPoints += 5
-    return this
+    this.actionPoints = (this.actionPoints + 25 >= 200) ? 200 : this.actionPoints +35;
+    this.healthPoints = (this.healthPoints + 25 >= 200) ? 200 : this.healthPoints + 5;
+}
+
+action(activity) {
+    switch(activity) {
+        case 'Drink':
+            this.drink();
+            break;
+        case 'Eat':
+            this.eats();
+            break;
+        case 'Sting Attack':
+            this.stingAttack();
+            break;
+        case 'Play with Yarn':
+            this.playYarn();
+            break;
+        default:
+            break;
+    }
+}
+
+isAlive() {
+    if (this.healthPoints <= 0) {
+        msg.textContent = `${this.name} was too unhealthy, and has died.`;
+    }
+
+    if (this.hunger <= 0) {
+        msg.textContent = `${this.name} didnt trap enough humans for food and has starved `;
+    }
+
+    if (this.thirsty <= 0) {
+        msg.textContent = `${this.name} died from the lack of blood`;
+    }
+
+    if (this.savageryPoints <= 0) {
+        msg.textContent = `${this.name} died of misery`;
+    }
+
+    if (this.actionPoints <= 0) {
+        msg.textContent = `${this.name} became lazy and died`;
+    }
 }
 }
-const manny = new Manticore("manny")
-manny.drinks().eats().playYarn
-manny.stats()
 
 class Centaur extends Animal{
-    constructor(name, content){
-        super(name, content)
-        this.content = content
+    constructor(name){
+        super(name)
+        this.moodPoints = 200;
     }
 shootArrow() {
-    this.healthPoints += 15
-    this.hunger -= 10
-    this.actionPoints -= 10
-    console.log(`This ${this.name} is out hunting`)
-    return this
+    this.actionPoints -=20
+    this.moodPoints = (this.moodPoints + 25 >= 200) ? 200 : this.moodPoints + 25;
+    this.hunger = (this.hunger + 10 >= 200) ? 200 : this.hunger + 10;
 }
 kickHooves() {
-    this.healthPoints += 10
-    this.actionPoints += 5
-    console.log(`${this.name} is ${this.content}`)
+    this.actionPoints = (this.actionPoints + 25 >= 200) ? 200 : this.actionPoints +35;
+    this.healthPoints = (this.healthPoints + 25 >= 200) ? 200 : this.healthPoints + 5;
 }
+action(activity) {
+    switch(activity) {
+        case 'Drink':
+            this.drink();
+            break;
+        case 'Eat':
+            this.eats();
+            break;
+        case 'Shoot Arrow':
+            this.shootArrow();
+            break;
+        case 'Kick Hooves':
+            this.kickHooves();
+            break;
+        default:
+            break;
+    }
 }
-const charlie = new Centaur("charlie")
-charlie.drinks().eats().shootArrow()
-charlie.stats()
+isAlive() {
+    if (this.healthPoints <= 0) {
+        msg.textContent = `${this.name} was too unhealthy, and has died.`;
+    }
+
+    if (this.hunger <= 0) {
+        msg.textContent = `${this.name} didnt burn enough villages for food and has starved `;
+    }
+
+    if (this.thirsty <= 0) {
+        msg.textContent = `${this.name} died from the lack of water`;
+    }
+
+    if (this.happinessPoints <= 0) {
+        msg.textContent = `${this.name} died of misery`;
+    }
+
+    if (this.actionPoints <= 0) {
+        msg.textContent = `${this.name} became lazy and died`;
+    }
+}
 
