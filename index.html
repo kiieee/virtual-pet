@@ -7,16 +7,42 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="wrapper">
+
+<div class="wrapper" id="mainwrapper">
+    <div class="wrapper" id="startscreen">
+        <h1>Choose your pet!</h1>
+        <main>
+            <section id="pet-display">
+                <img src="pet-image.png" alt="Your Virtual Pet">
+            </section>
+     
+            <section id="actions">
+                <button id="dragon">Dragon</button>
+                <button id="manticore">Manticore</button>
+                <button id="centaur">Centaur</button>
+    </div> 
+
+
+    <div class="wrapper" id="gamescreen">
         <h1>Monster Tamagochi</h1>
-        <p class="statsdisplay">Here be buttons</p>
+        <p id="statsdisplay">Here be buttons</p>
         <ul class="buttonbox">
-            <li class="button">A</li>
-            <li class="button">B</li>
-            <li class="button">C</li>
-            <li class="button">D</li>
+            <li class="button" id="foodbutt">A</li> 
+            <!-- //eat// -->
+            <li class="button" id="drinkbutt">B</li>
+            <!-- //drink -->
+            <li class="button" id="actionbutt1">C</li>
+            <!-- //action 1 -->
+            <li class="button" id="actionbutt2">D</li>
+            <!-- //action 2 -->
             <li class="button">E</li>
         </ul>
+    </div>
+
+
+    <div class="wrapper" id="endscreen">
+        <p>You expected some shit here? Lol at you.</p>
+    </div>
     </div>
     <script src="app.js"></script>
 </body>
