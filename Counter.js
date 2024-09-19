@@ -1,50 +1,21 @@
-// let counter = 0;
+let food = 100; 
+let timer = 25; 
+const timerDisplay = document.getElementById('timer-display');
+const foodDisplay = document.getElementById('food-count');
 
-// function updateCounter() {
-//   counter++;   
-//   document.getElementById("tCounter").textContent = counter; 
+function updateTimer() {
+    timer--;
+    timerDisplay.textContent = timer;
 
-
-// let counter = 0;
-
-// function updateCounter() {
-//   if (counter === 10) {
-//     document.getElementById("tCounter").textContent = "Surprise!";
-//     settimeout(function(){
-//         counter = 0;
-//         document.getElementById("tCounter").textContent = counter;
-//     }, 10);
-//   } else {
-//     counter++;
-//     document.getElementById("tCounter").textContent = counter;
-//   }
-// }
-// setInterval(updateCounter, 1000);
-
-  let counter = 10; 
-  let foodCount = 10; 
-
-function updateCounter() {
-  
-    
-    if (counter === 0) {
-      document.getElementById("tCounter").textContent = "Surprise!";
-      foodCount--;
-     document.getElementById("foodCount").textContent = "Food: " + foodCount;
-
-    setTimeout(function() {
-        counter = 10;
-        document.getElementById("tCounter").textContent = counter;
-      }, 1000); 
-    } else {
-
-
-      counter--;
-      document.getElementById("tCounter").textContent = counter;
+    if (timer === 0) {
+        food -= 1; // this allows you to change the food when needed
+        if (food < 0) {
+            food = 0; 
+        }
+        timer = 25; // this is the timer change as needed
+        foodDisplay.textContent = food;
     }
-  }
-setInterval(updateCounter, 1000);
+}
 
 
-
-
+setInterval(updateTimer, 1000);
