@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Choose your pet!</h1>
+    <main>
+        <section id="pet-display">
+            <img src="pet-image.png" alt="Your Virtual Pet">
+        </section>
+
+        <div>
+        <label for="animal">Choose your animal from the list:</label>
+        <input list="animals" name="animal" id="animal">
+        
+        <datalist id="animals">
+          <option value="Dragon">
+          <option value="Manticore">
+          <option value="Centaur">
+        </datalist>
+
+    </div>
+    <div>
+        <label for="name">Name your animal:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+
+    </div>
+        <input type="submit">
+
+        <section id="messages">
+            <p id="message">Your pet is happy!</p>
+        </section>
+
+        <div id="buttonWrapper"></div>
+        <div id="statWrapper"></div>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
