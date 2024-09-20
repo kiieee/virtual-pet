@@ -1,0 +1,66 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    text-align: center; 
+
+}
+
+.wrapper {
+    max-width: 70%; 
+    min-width: 50%;
+    margin: 0 auto;    
+    padding: 20px;     
+    background-color: #f0f0f0; 
+}
+
+#mainwrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: auto;
+    margin: auto;
+    background-color: #f6f6f6;
+    place-content: center;
+}
+
+.buttonbox {
+    display: flex;
+    flex-direction: row;
+    max-width: 1000px; 
+    margin: 0 auto;    
+    padding: 10px;
+    background-color: #f4f4f4; 
+    justify-content: space-between;
+    text-decoration: none;
+}
+
+.button {
+    display: flex;
+    max-width: 200px;
+    padding: 10px;
+    background-color: orange;
+    color: red;
+}
+
+#startscreen {
+    max-height: 1000px;
+    overflow: hidden;
+}
+#gamescreen {
+    max-height: 0px;
+    overflow: hidden;
+}
+#endscreen {
+    max-height: 0;
+    overflow: hidden;
+}
+
+.bar {
+    background-color: red;
+    height: 5px;
+    width: 100px;
+}

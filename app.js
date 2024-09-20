@@ -1,144 +1,395 @@
+let pet 
+let thirsty
+let hunger
+
+//Main button functionality
+//Animal class 4 variables HPoints, Hunger, APoints, Thirst.
+//5th variable in subclass differs for each creature.
+//All values set to 200 
+
 class Animal {
     constructor(name){
         this.name = name
-        this.healthPoints = 500
-        this.hunger = 400
-        this.actionPoints = 300
+        this.healthPoints = 200
+        this.hunger = 200
+        this.actionPoints = 200
+        this.thirsty = 200
     }
-    drinks(){
-        this.healthPoints += 10
+    drink() {
+        this.healthPoints = (this.health + 15 >= 200) ? 200 : this.health + 15;
+        this.thirsty = (this.thirsty + 15 >= 200) ? 200 : this.thirsty + 15;
         return this
     }
     eats(){
-        this.healthPoints += 10
-        this.hunger += 20
-        this.actionPoints += 15
-        console.log(`${this.name}'s health is ${this.healthPoints}`)
+        this.healthPoints = (this.health + 25 >= 200) ? 200 : this.health + 25;
+        this.thirsty -= 5;
+        this.hunger = (this.hunger + 20 >= 200) ? 200 : this.hunger + 20;
         return this
-    }
-    stats(){
-        return console.table({
-            name: this.name,
-            healthPoints: this.healthPoints,
-            actionPoints: this.actionPoints,
-        })
     }
 }
 
 class Dragon extends Animal{
-    constructor(name, happy){
-        super(name,happy) //super keyword runs the constructor from parent class to set up 
-                            //the properties for the new class
-        this.happy = happy
+    constructor(name){
+        super(name); 
+        this.happinessPoints = 200;
     }
     burnVillage() {
-        this.healthPoints += 20
-        this.hunger -=15
         this.actionPoints -=20
-        console.log(`${this.name} is basking in the flames`)
-        return this
-    }
-    giveGold() {
-        console.log(`An offering of gold has been given, they are ${this.happy}`)
-        this.healthPoints += 10
-        this.actionPoints += 5
-        return this
-    }
-}
+        this.happinessPoints = (this.happinessPoints + 25 >= 200) ? 200 : this.happinessPoints + 25;
+        this.hunger = (this.hunger + 10 >= 200) ? 200 : this.hunger + 10;
 
-// const draco = new Dragon("draco")
-// draco.drinks().eats()
-// draco.stats()
+    giveGold(); {
+        this.actionPoints = (this.actionPoints + 25 >= 200) ? 200 : this.actionPoints +35;
+        this.healthPoints = (this.healthPoints + 25 >= 200) ? 200 : this.healthPoints + 5;
+    }
+
+    action(activity); {
+        switch(activity) {
+            case 'Drink':
+                this.drink();
+                console.log("Refreshing!")
+                break;
+            case 'Eat':
+                this.eats();
+                console.log("Yummy!")
+                break;
+            case 'Burn Village':
+                this.burnVillage();
+                break;
+            case 'Give Gold':
+                this.giveGold();
+                break;
+            default:
+                break;
+        }
+    }
+
+    isAlive(); {
+        if (this.healthPoints <= 0) {
+            msg.textContent = `${this.name} was too unhealthy, and has died.`;
+        }
+
+        if (this.hunger <= 0) {
+            msg.textContent = `${this.name} didnt burn enough villages for food and has starved `;
+        }
+    
+        if (this.thirsty <= 0) {
+            msg.textContent = `${this.name} died from the lack of water`;
+        }
+    
+        if (this.happinessPoints <= 0) {
+            msg.textContent = `${this.name} died of misery`;
+        }
+
+        if (this.actionPoints <= 0) {
+            msg.textContent = `${this.name} became lazy and died`;
+        }
+    }
+    
+}}
 
 class Manticore extends Animal{
-    constructor(name, mood){
-        super(name, mood)
-        this.mood = mood
+    constructor(name){
+        super(name);
+        this.savageryPoints = 200;
     }
 stingAttack(){
-    this.healthPoints += 20
-    this.hunger -= 10
-    this.actionPoints -= 15
-    console.log(`This ${this.name} is satisfied`)
-    return this
+    this.actionPoints -=20
+    this.savageryPoints = (this.savageryPoints + 25 >= 200) ? 200 : this.savageryPoints + 25;
+    this.hunger = (this.hunger + 10 >= 200) ? 200 : this.hunger + 10;
 }
 playYarn(){
-    console.log(`${this.name} is playing with a ball of yarn, they are ${this.mood}`)
-    this.healthPoints += 10
-    this.actionPoints += 5
-    return this
+    this.actionPoints = (this.actionPoints + 25 >= 200) ? 200 : this.actionPoints +35;
+    this.healthPoints = (this.healthPoints + 25 >= 200) ? 200 : this.healthPoints + 5;
+}
+
+action(activity) {
+    switch(activity) {
+        case 'Drink':
+            this.drink();
+            break;
+        case 'Eat':
+            this.eats();
+            break;
+        case 'Sting Attack':
+            this.stingAttack();
+            break;
+        case 'Play with Yarn':
+            this.playYarn();
+            break;
+        default:
+            break;
+    }
+}
+
+isAlive() {
+    if (this.healthPoints <= 0) {
+        msg.textContent = `${this.name} was too unhealthy, and has died.`;
+    }
+
+    if (this.hunger <= 0) {
+        msg.textContent = `${this.name} didnt trap enough humans for food and has starved `;
+    }
+
+    if (this.thirsty <= 0) {
+        msg.textContent = `${this.name} died from the lack of blood`;
+    }
+
+    if (this.savageryPoints <= 0) {
+        msg.textContent = `${this.name} died of misery`;
+    }
+
+    if (this.actionPoints <= 0) {
+        msg.textContent = `${this.name} became lazy and died`;
+    }
 }
 }
-// const manny = new Manticore("manny")
-// manny.drinks().eats().playYarn
-// manny.stats()
 
 class Centaur extends Animal{
-    constructor(name, content){
-        super(name, content)
-        this.content = content
+    constructor(name){
+        super(name)
+        this.moodPoints = 200;
     }
 shootArrow() {
-    this.healthPoints += 15
-    this.hunger -= 10
-    this.actionPoints -= 10
-    console.log(`This ${this.name} is out hunting`)
-    return this
+    this.actionPoints -=20
+    this.moodPoints = (this.moodPoints + 25 >= 200) ? 200 : this.moodPoints + 25;
+    this.hunger = (this.hunger + 10 >= 200) ? 200 : this.hunger + 10;
 }
 kickHooves() {
-    this.healthPoints += 10
-    this.actionPoints += 5
-    console.log(`${this.name} is ${this.content}`)
+    this.actionPoints = (this.actionPoints + 25 >= 200) ? 200 : this.actionPoints +35;
+    this.healthPoints = (this.healthPoints + 25 >= 200) ? 200 : this.healthPoints + 5;
 }
+action(activity) {
+    switch(activity) {
+        case 'Drink':
+            this.drink();
+            break;
+        case 'Eat':
+            this.eats();
+            break;
+        case 'Shoot Arrow':
+            this.shootArrow();
+            break;
+        case 'Kick Hooves':
+            this.kickHooves();
+            break;
+        default:
+            break;
+    }
 }
-let optionArr = []
-let propertiesArr = []
 
-const addBtns = (optionArr, propertiesArr) => {
-    for(let i = 0; i < optionArr.length; i++){
-        document.getElementById('buttonWrapper').innerHTML += `<button onclick="pet.action('${optionArr[i]}')">${optionArr[i]}</button>`
-    }  
-    
-    for(let i = 1; i < propertiesArr.length; i++){
-        document.getElementById('statWrapper').innerHTML += `
-        <div>
-            <label for="${propertiesArr[i]}">${propertiesArr[i]}:</label>
-            <progress id="${propertiesArr[i]}" name="${propertiesArr[i]}" class="stats" value="100" max="100"></progress>
-        </div>
-        `
+isAlive() {
+    if (this.healthPoints <= 0) {
+        msg.textContent = `${this.name} was too unhealthy, and has died.`;
     }
 
-    msg.textContent = `they are happy`
+    if (this.hunger <= 0) {
+        msg.textContent = `${this.name} didnt burn enough villages for food and has starved `;
+    }
+
+    if (this.thirsty <= 0) {
+        msg.textContent = `${this.name} died from the lack of water`;
+    }
+
+    if (this.happinessPoints <= 0) {
+        msg.textContent = `${this.name} died of misery`;
+    }
+
+    if (this.actionPoints <= 0) {
+        msg.textContent = `${this.name} became lazy and died`;
+    }
+}}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const buttons = document.querySelectorAll(".button");
+
+    //const stats = document.querySelectorAll(".statsdisplay")
+
+    let x = 0; 
+    let y = 0;
+    let z = 0;
+    let n = 0;
+
+    //added variables for each button to see if they are counted
+
+    const startbutton = document.getElementById("startbutt")
+
+//startbutton actions
+
+    startbutton.addEventListener("click", function() {
+        pet = new Animal("Billy")
+        let animalname = document.getElementById("name").value 
+        let animalclass = document.getElementById("animal").value
+        console.log(`${animalname} ${animalclass}`)
+        console.log(`Open GameScreen`);
+        document.getElementById("gamescreen").style.maxHeight = `1000px`;
+        document.getElementById("startscreen").style.maxHeight = `0px`;
+        document.getElementById("endscreen").style.maxHeight = `0px`;
+        this.hunger = 200
+        this.thirsty =200
+    });
+
+    const resetbutton = document.getElementById("restart")
+
+
+//resetubtton actions
+
+
+
+    resetbutton.addEventListener("click", function() {
+        console.log("game reset");
+        document.getElementById("gamescreen").style.maxHeight = `0px`;
+        document.getElementById("startscreen").style.maxHeight = `1000px`;
+        document.getElementById("endscreen").style.maxHeight = `0px`;
+        document.getElementById('myForm').reset();
+        document.getElementById('myForm').reset();
+        animalname = null;
+        animalclass = null;
+
+    });
+
+    buttons.forEach(button => {
+        button.addEventListener("mouseover", function() {
+            button.style.backgroundColor = "yellow"; 
+            //mouseover
+        });
+
+        button.addEventListener("mouseout", function() {
+            button.style.backgroundColor = ""; 
+        });
+
+
+        button.addEventListener("click", function() {
+            if (button.textContent === "A") {
+                x += 1;
+                console.log(`x is now ${x}`);
+                document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
+                pet.eats();
+
+            }
+        });
+        button.addEventListener("click", function() {
+            if (button.textContent === "B") {
+                y += 1;
+                console.log(`y is now ${y}`);
+                document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
+                pet.drink();
+                console.log(`${this.thirsty}`)
+            }
+        });
+        button.addEventListener("click", function() {
+            if (button.textContent === "C") {
+                z += 1;
+                console.log(`z is now ${z}`);
+                document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
+            }
+        });
+        button.addEventListener("click", function() {
+            if (button.textContent === "D") {
+                n += 1;
+                console.log(`n is now ${n}`);
+                document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
+
+            //event listeners for clicking
+
+            }
+        });
+        button.addEventListener("click", function() {
+            if (button.textContent === "E") {
+                console.log(`Game resets`)
+                document.getElementById("endscreen").style.maxHeight = `1000px`;
+                document.getElementById("startscreen").style.maxHeight = `0px`;
+                document.getElementById("gamescreen").style.maxHeight = `0px`;
+            
+            //event listeners for clicking
+
+            }
+        });
+    });
+
+    // document.addEventListener("keydown", function(event) {
+    //     if (event.key === "ArrowLeft") {
+    //         x += 1;
+    //         console.log(`x is now ${x}`);
+    //         document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
+    //     }
+    // });
+    // document.addEventListener("keydown", function(event) {
+    //     if (event.key === "ArrowUp") {
+    //         y += 1;
+    //         console.log(`y is now ${y}`);
+    //         document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
+    //     }
+    // });
+    // document.addEventListener("keydown", function(event) {
+    //     if (event.key === "ArrowRight") {
+    //         z += 1;
+    //         console.log(`z is now ${z}`);
+    //         document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
+    //     }
+    // });
+    // document.addEventListener("keydown", function(event) {
+    //     if (event.key === "ArrowDown") {
+    //         n += 1;
+    //         console.log(`n is now ${n}`);
+    //         document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
+
+    //         //event listeners for keydowns
+
+    //     }
+    // });
+    // document.addEventListener("keydown", function(event) {
+
+    //     if (event.key === "a") {
+    //         console.log(`Open StartScreen`);
+    //         document.getElementById("startscreen").style.maxHeight = `1000px`;
+    //         document.getElementById("gamescreen").style.maxHeight = `0px`;
+    //         document.getElementById("endscreen").style.maxHeight = `0px`;
+    //     }});
+    // document.addEventListener("keydown", function(event) {
+    //     if (event.key === "b") {
+    //         console.log(`Open GameScreen`);
+    //         document.getElementById("gamescreen").style.maxHeight = `1000px`;
+    //         document.getElementById("startscreen").style.maxHeight = `0px`;
+    //         document.getElementById("endscreen").style.maxHeight = `0px`;
+
+    //     }});
+    // document.addEventListener("keydown", function(event) {
+    //     if (event.key === "c") {
+    //         console.log(`Open End Screen`);
+    //         document.getElementById("endscreen").style.maxHeight = `1000px`;
+    //         document.getElementById("startscreen").style.maxHeight = `0px`;
+    //         document.getElementById("gamescreen").style.maxHeight = `0px`;
+
+    //         //event listeners for screen cycling 
+
+    //     }});
+});
+
+
+let food = this.hunger
+let timer = 1; 
+const timerDisplay = document.getElementById('timer-display');
+const foodDisplay = document.getElementById('food-count');
+const foodbar = document.getElementById(`foodbar`)
+
+function updateTimer() {
+    timer--;
+    timerDisplay.textContent = timer;
+
+    if (timer === 0) {
+        food -= 3; // this allows you to change the food when needed
+        if (food < 0) {
+            food = 0; 
+        }
+        timer = 1; // this is the timer change as needed
+        foodDisplay.textContent = food;
+        // howlong = food;
+        // foodbar.style.width = howlong
+        // tried to make healthbar scale with time
+    }
 }
-const dragonBtn = document.getElementById('dragon')
-const manticoreBtn = document.getElementById('manticore')
-const centaurBtn = document.getElementById('centaur')
-
-let animalName = "bob"
-
-dragonBtn.addEventListener('click', () => {
-    pet = new Dragon(animalName);
-    addBtns(['Eat', 'Drink', 'Burn Village', 'Give Gold']);
-    image.style.backgroundImage = "url('/dragon2.webp')" }
-    
-)
-
-manticoreBtn.addEventListener('click', () => {
-    pet = new Manticore(animalName);
-    addBtns(['Eat', 'Drink', 'Sting Attack', 'Chase Yarn']);
-    image.style.backgroundImage = "url('/manticore.png')" }
-    
-)
-
-centaurBtn.addEventListener('click', () => {
-    pet = new Centaur(animalName);
-    addBtns(['Eat', 'Drink', 'Shoot Arrow', 'Kick Hooves']);
-    image.style.backgroundImage = "url('/centaur2.png')" }
-    
-)
 
 
-
-
-
-
+setInterval(updateTimer, 1000);

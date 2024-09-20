@@ -3,42 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tamagochi</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Choose your pet!</h1>
-    <main>
-        <section id="pet-display">
-            <img src="pet-image.png" alt="Your Virtual Pet">
-        </section>
-
-        <div>
-        <label for="animal">Choose your animal from the list:</label>
-        <input list="animals" name="animal" id="animal">
+<!-- start screen - choose your character and name it then submit -->
+<div class="wrapper" id="mainwrapper">
+    <div class="wrapper" id="startscreen">
+        <h1>Choose your pet!</h1>
+        <main>
+            <section id="pet-display">
+                <img src="https://th.bing.com/th/id/R.894e59cee422cd2bd71e4e03ebbdb721?rik=ngi0hX%2fbaUC8FQ&riu=http%3a%2f%2f3.bp.blogspot.com%2f-WhMsgESkQuw%2fTmt5azQSUxI%2fAAAAAAAAF-w%2fxQJRx8FqCi8%2fs1600%2fShrek.jpg&ehk=EE3AJ2dR8HGoPu%2ftptja6XaGbrF1nJKe6zZIIAwjWk4%3d&risl=&pid=ImgRaw&r=0" style="width:200px;height:200px;" alt="Your Virtual Pet">
+            </section>
+    
+            <div>
+            <form id="myForm">
+            <label for="animal">Choose your animal from the list:</label>
+            <br></br>
+            <input list="animals" id="animal">
+            
+            <datalist id="animals">
+              <option value="Dragon">
+              <option value="Manticore">
+              <option value="Centaur">
+            </datalist>
+            <br></br>
         
-        <datalist id="animals">
-          <option value="Dragon">
-          <option value="Manticore">
-          <option value="Centaur">
-        </datalist>
+    
+        </div>
+        <div>
+            <label for="name">Name your animal:</label><br></br>
+            <input type="text" id="name"><br><br>
+        </form>
+    
+        </div>
+            <input type="submit"  id="startbutt">
+    </div> 
+
+ <!-- Gamescreen all the buttons and displays go here. -->
+    <div class="wrapper" id="gamescreen">
+        <h1>Monster Tamagochi</h1>
+        <div>
+            <h1>Food: <span id="food-count">100</span></h1>
+            <h2>Timer: <span id="timer-display">10</span> seconds</h2>
+            <p class="bar"> </p>
+        </div>
+        <p id="statsdisplay">Here be buttons</p>
+        <ul class="buttonbox">
+            <li class="button" id="foodbutt">A</li> 
+            <!-- //eat// -->
+            <li class="button" id="drinkbutt">B</li>
+            <!-- //drink -->
+            <li class="button" id="actionbutt1">C</li>
+            <!-- //action 1 -->
+            <li class="button" id="actionbutt2">D</li>
+            <!-- //action 2 -->
+            <li class="button">E</li>
+        </ul>
+    </div>
+
+
+    <!-- End Screen - it's joever -->
+    <div class="wrapper" id="endscreen">
+        <p>Endscreen.</p>
+        <button  id="restart" style="height: 50 px; width: 50px;"> restart </button>
 
     </div>
-    <div>
-        <label for="name">Name your animal:</label>
-        <input type="text" id="name" name="name"><br><br>
-
-
     </div>
-        <input type="submit">
-
-        <section id="messages">
-            <p id="message">Your pet is happy!</p>
-        </section>
-
-        <div id="buttonWrapper"></div>
-        <div id="statWrapper"></div>
-    </main>
     <script src="app.js"></script>
 </body>
 </html>
