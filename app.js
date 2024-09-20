@@ -16,6 +16,7 @@ class Animal {
     drink() {
         this.healthPoints = (this.health + 15 >= 200) ? 200 : this.health + 15;
         this.thirsty = (this.thirsty + 15 >= 200) ? 200 : this.thirsty + 15;
+        return this
     }
     eats(){
         this.healthPoints = (this.health + 25 >= 200) ? 200 : this.health + 25;
@@ -211,6 +212,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const startbutton = document.getElementById("startbutt")
 
+//startbutton actions
+
     startbutton.addEventListener("click", function() {
         pet = new Animal("Billy")
         let animalname = document.getElementById("name").value 
@@ -220,9 +223,26 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("gamescreen").style.maxHeight = `1000px`;
         document.getElementById("startscreen").style.maxHeight = `0px`;
         document.getElementById("endscreen").style.maxHeight = `0px`;
+    });
 
-    })
+    const resetbutton = document.getElementById("restart")
 
+
+//resetubtton actions
+
+
+
+    resetbutton.addEventListener("click", function() {
+        console.log("game reset");
+        document.getElementById("gamescreen").style.maxHeight = `0px`;
+        document.getElementById("startscreen").style.maxHeight = `1000px`;
+        document.getElementById("endscreen").style.maxHeight = `0px`;
+        document.getElementById('animals').reset();
+        document.getElementById('name').reset();
+        animalname = null;
+        animalclass = null;
+
+    });
 
     buttons.forEach(button => {
         button.addEventListener("mouseover", function() {
@@ -240,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 x += 1;
                 console.log(`x is now ${x}`);
                 document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
-                action = eats()
+                pet.eats();
 
             }
         });
@@ -249,7 +269,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 y += 1;
                 console.log(`y is now ${y}`);
                 document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
-                action = drinks()
+                pet.drink();
+                console.log(`${this.thirsty}`)
             }
         });
         button.addEventListener("click", function() {
