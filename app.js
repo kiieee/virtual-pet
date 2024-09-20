@@ -1,4 +1,6 @@
 let pet 
+let thirsty
+let hunger
 
 //Main button functionality
 //Animal class 4 variables HPoints, Hunger, APoints, Thirst.
@@ -22,6 +24,7 @@ class Animal {
         this.healthPoints = (this.health + 25 >= 200) ? 200 : this.health + 25;
         this.thirsty -= 5;
         this.hunger = (this.hunger + 20 >= 200) ? 200 : this.hunger + 20;
+        return this
     }
 }
 
@@ -223,6 +226,8 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("gamescreen").style.maxHeight = `1000px`;
         document.getElementById("startscreen").style.maxHeight = `0px`;
         document.getElementById("endscreen").style.maxHeight = `0px`;
+        this.hunger = 200
+        this.thirsty =200
     });
 
     const resetbutton = document.getElementById("restart")
@@ -237,7 +242,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("gamescreen").style.maxHeight = `0px`;
         document.getElementById("startscreen").style.maxHeight = `1000px`;
         document.getElementById("endscreen").style.maxHeight = `0px`;
-        document.getElementById('animals').reset();
+        document.getElementById('animal').reset();
         document.getElementById('name').reset();
         animalname = null;
         animalclass = null;
@@ -290,69 +295,80 @@ document.addEventListener("DOMContentLoaded", function() {
 
             }
         });
+        button.addEventListener("click", function() {
+            if (button.textContent === "E") {
+                console.log(`Game resets`)
+                document.getElementById("endscreen").style.maxHeight = `1000px`;
+                document.getElementById("startscreen").style.maxHeight = `0px`;
+                document.getElementById("gamescreen").style.maxHeight = `0px`;
+            
+            //event listeners for clicking
+
+            }
+        });
     });
 
-    document.addEventListener("keydown", function(event) {
-        if (event.key === "ArrowLeft") {
-            x += 1;
-            console.log(`x is now ${x}`);
-            document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
-        }
-    });
-    document.addEventListener("keydown", function(event) {
-        if (event.key === "ArrowUp") {
-            y += 1;
-            console.log(`y is now ${y}`);
-            document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
-        }
-    });
-    document.addEventListener("keydown", function(event) {
-        if (event.key === "ArrowRight") {
-            z += 1;
-            console.log(`z is now ${z}`);
-            document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
-        }
-    });
-    document.addEventListener("keydown", function(event) {
-        if (event.key === "ArrowDown") {
-            n += 1;
-            console.log(`n is now ${n}`);
-            document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
+    // document.addEventListener("keydown", function(event) {
+    //     if (event.key === "ArrowLeft") {
+    //         x += 1;
+    //         console.log(`x is now ${x}`);
+    //         document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
+    //     }
+    // });
+    // document.addEventListener("keydown", function(event) {
+    //     if (event.key === "ArrowUp") {
+    //         y += 1;
+    //         console.log(`y is now ${y}`);
+    //         document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
+    //     }
+    // });
+    // document.addEventListener("keydown", function(event) {
+    //     if (event.key === "ArrowRight") {
+    //         z += 1;
+    //         console.log(`z is now ${z}`);
+    //         document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
+    //     }
+    // });
+    // document.addEventListener("keydown", function(event) {
+    //     if (event.key === "ArrowDown") {
+    //         n += 1;
+    //         console.log(`n is now ${n}`);
+    //         document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
 
-            //event listeners for keydowns
+    //         //event listeners for keydowns
 
-        }
-    });
-    document.addEventListener("keydown", function(event) {
+    //     }
+    // });
+    // document.addEventListener("keydown", function(event) {
 
-        if (event.key === "a") {
-            console.log(`Open StartScreen`);
-            document.getElementById("startscreen").style.maxHeight = `1000px`;
-            document.getElementById("gamescreen").style.maxHeight = `0px`;
-            document.getElementById("endscreen").style.maxHeight = `0px`;
-        }});
-    document.addEventListener("keydown", function(event) {
-        if (event.key === "b") {
-            console.log(`Open GameScreen`);
-            document.getElementById("gamescreen").style.maxHeight = `1000px`;
-            document.getElementById("startscreen").style.maxHeight = `0px`;
-            document.getElementById("endscreen").style.maxHeight = `0px`;
+    //     if (event.key === "a") {
+    //         console.log(`Open StartScreen`);
+    //         document.getElementById("startscreen").style.maxHeight = `1000px`;
+    //         document.getElementById("gamescreen").style.maxHeight = `0px`;
+    //         document.getElementById("endscreen").style.maxHeight = `0px`;
+    //     }});
+    // document.addEventListener("keydown", function(event) {
+    //     if (event.key === "b") {
+    //         console.log(`Open GameScreen`);
+    //         document.getElementById("gamescreen").style.maxHeight = `1000px`;
+    //         document.getElementById("startscreen").style.maxHeight = `0px`;
+    //         document.getElementById("endscreen").style.maxHeight = `0px`;
 
-        }});
-    document.addEventListener("keydown", function(event) {
-        if (event.key === "c") {
-            console.log(`Open End Screen`);
-            document.getElementById("endscreen").style.maxHeight = `1000px`;
-            document.getElementById("startscreen").style.maxHeight = `0px`;
-            document.getElementById("gamescreen").style.maxHeight = `0px`;
+    //     }});
+    // document.addEventListener("keydown", function(event) {
+    //     if (event.key === "c") {
+    //         console.log(`Open End Screen`);
+    //         document.getElementById("endscreen").style.maxHeight = `1000px`;
+    //         document.getElementById("startscreen").style.maxHeight = `0px`;
+    //         document.getElementById("gamescreen").style.maxHeight = `0px`;
 
-            //event listeners for screen cycling 
+    //         //event listeners for screen cycling 
 
-        }});
+    //     }});
 });
 
 
-let food = 100; 
+let food = this.hunger
 let timer = 1; 
 const timerDisplay = document.getElementById('timer-display');
 const foodDisplay = document.getElementById('food-count');
@@ -367,7 +383,7 @@ function updateTimer() {
         if (food < 0) {
             food = 0; 
         }
-        timer = 5; // this is the timer change as needed
+        timer = 1; // this is the timer change as needed
         foodDisplay.textContent = food;
         // howlong = food;
         // foodbar.style.width = howlong
