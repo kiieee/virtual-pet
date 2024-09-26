@@ -17,6 +17,7 @@
             </section>
     
             <div>
+            <form id="myForm">
             <label for="animal">Choose your animal from the list:</label>
             <br></br>
             <input list="animals" id="animal">
@@ -27,12 +28,13 @@
               <option value="Centaur">
             </datalist>
             <br></br>
+        
     
         </div>
         <div>
             <label for="name">Name your animal:</label><br></br>
             <input type="text" id="name"><br><br>
-    
+        </form>
     
         </div>
             <input type="submit"  id="startbutt">
@@ -43,6 +45,7 @@
         <h1>Monster Tamagochi</h1>
         <div>
             <h1>Food: <span id="food-count">100</span></h1>
+            <h2>Thirst: <span id="thirst-count">200</span></h2>
             <h2>Timer: <span id="timer-display">10</span> seconds</h2>
             <p class="bar"> </p>
         </div>
@@ -63,7 +66,7 @@
 
     <!-- End Screen - it's joever -->
     <div class="wrapper" id="endscreen">
-        <p>Endscreen.</p>
+        <p style="size: 50 px; font-weight: 5px;">RIP.</p>
         <button  id="restart" style="height: 50 px; width: 50px;"> restart </button>
 
     </div>

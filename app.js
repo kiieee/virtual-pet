@@ -26,6 +26,12 @@ class Animal {
         this.hunger = (this.hunger + 20 >= 200) ? 200 : this.hunger + 20;
         return this
     }
+    showhunger() {
+        this.hunger
+    }
+    showthirsty() {
+        this.thirsty
+    }
 }
 
 class Dragon extends Animal{
@@ -201,6 +207,7 @@ isAlive() {
 }}
 
 
+
 document.addEventListener("DOMContentLoaded", function() {
     const buttons = document.querySelectorAll(".button");
 
@@ -228,9 +235,56 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("endscreen").style.maxHeight = `0px`;
         this.hunger = 200
         this.thirsty =200
+
+        let food = pet.showhunger()
+        let thirst = pet.showthirsty()
+        let timer = 5; 
+        const timerDisplay = document.getElementById('timer-display');
+        const foodDisplay = document.getElementById('food-count');
+        const thirstDisplay = document.getElementById('thirst-count');
+        // const foodbar = document.getElementById(`foodbar`);
+        
+        function updateTimer() {
+            timer--;
+            console.log(`${timer}`)
+            timerDisplay.textContent = timer;
+        
+            if (timer === 0) {
+                food -= 5; // this allows you to change the food when needed
+                thirst -= 5;
+                pet.hunger = food; 
+                pet.thirsty = thirst;
+                console.log(`${pet.thirsty}`)
+                console.log(`${pet.hunger}`)
+                timer += 5;
+                if (food < 0) {
+                    food = 0;
+
+                }
+                if (thirst < 0) {
+                    thirst = 0;
+
+                }
+                timer +5; // this is the timer change as needed
+                foodDisplay.textContent = food;
+                thirstDisplay.textContent = thirst;
+                
+                
+                // howlong = food;
+                // foodbar.style.width = howlong
+                // tried to make healthbar scale with time
+            }
+        }
+        
+        
+        setInterval(updateTimer, 1000);
     });
 
     const resetbutton = document.getElementById("restart")
+
+    function feed() {
+        pet.eats();
+        console.log(`${name} has been fed!`);}
 
 
 //resetubtton actions
@@ -242,8 +296,8 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("gamescreen").style.maxHeight = `0px`;
         document.getElementById("startscreen").style.maxHeight = `1000px`;
         document.getElementById("endscreen").style.maxHeight = `0px`;
-        document.getElementById('animal').reset();
-        document.getElementById('name').reset();
+        document.getElementById('myForm').reset();
+        document.getElementById('myForm').reset();
         animalname = null;
         animalclass = null;
 
@@ -266,6 +320,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log(`x is now ${x}`);
                 document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
                 pet.eats();
+                console.log(`${pet.hunger}`);
+                feed();
 
             }
         });
@@ -275,7 +331,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log(`y is now ${y}`);
                 document.getElementById("statsdisplay").innerText =`${x.toString()} .. ${y.toString()} .. ${z.toString()} .. ${n.toString()}` ;
                 pet.drink();
-                console.log(`${this.thirsty}`)
+                console.log(`${pet.thirsty}`)
             }
         });
         button.addEventListener("click", function() {
@@ -306,6 +362,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
             }
         });
+    });
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "ArrowUp") {
+            console.log(`${pet.hunger}`);
+        }
     });
 
     // document.addEventListener("keydown", function(event) {
@@ -365,31 +426,39 @@ document.addEventListener("DOMContentLoaded", function() {
     //         //event listeners for screen cycling 
 
     //     }});
+    // let food = pet.showhunger()
+    // let thirst = pet.showthirsty()
+    // let timer = 10; 
+    // const timerDisplay = document.getElementById('timer-display');
+    // const foodDisplay = document.getElementById('food-count');
+    // const thirstDisplay = documnet.getElementById('thirst-count');
+    // const foodbar = document.getElementById(`foodbar`);
+    
+    // function updateTimer() {
+    //     timer--;
+    //     console.log(`${timer}`)
+    //     timerDisplay.textContent = timer;
+    
+    //     if (timer === 0) {
+    //         food -= 5; // this allows you to change the food when needed
+    //         thirst -= 5;
+    //         if (food < 0) {
+    //             food = 0; 
+    //         }
+    //         if (thirst < 0) {
+    //             thirst = 0;
+    //         }
+    //         timer +1; // this is the timer change as needed
+    //         foodDisplay.textContent = food;
+    //         thirstDisplay.textContent = thirst;
+            
+    //         // howlong = food;
+    //         // foodbar.style.width = howlong
+    //         // tried to make healthbar scale with time
+    //     }
+    // }
+    
+    
+    // setInterval(updateTimer, 1000);
 });
 
-
-let food = this.hunger
-let timer = 1; 
-const timerDisplay = document.getElementById('timer-display');
-const foodDisplay = document.getElementById('food-count');
-const foodbar = document.getElementById(`foodbar`)
-
-function updateTimer() {
-    timer--;
-    timerDisplay.textContent = timer;
-
-    if (timer === 0) {
-        food -= 3; // this allows you to change the food when needed
-        if (food < 0) {
-            food = 0; 
-        }
-        timer = 1; // this is the timer change as needed
-        foodDisplay.textContent = food;
-        // howlong = food;
-        // foodbar.style.width = howlong
-        // tried to make healthbar scale with time
-    }
-}
-
-
-setInterval(updateTimer, 1000);
